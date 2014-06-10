@@ -1,0 +1,27 @@
+{
+  "name": "clipster",
+  "title": "Clipster",
+  "description": "Copy without Flash",
+  "version": "0.1.0",
+  "homepage": "https://github.com/kickstarter/jquery-clipster",
+  "author": {
+    "name": "Samuel Cole",
+    "email": "sam@kickstarter.com",
+    "url": "http://kickstarter.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:kickstarter/jquery-clipster.git"
+  },
+  "bugs": "https://github.com/kickstarter/jquery-clipster/issues",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/kickstarter/jquery-clipster/blob/master/LICENSE-MIT"
+    }
+  ],
+  "dependencies": {
+    "jquery": "*"
+  },
+  "keywords": []
+}
