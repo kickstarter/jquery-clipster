@@ -1,0 +1,23 @@
+#jquery-clipster-overlay {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  opacity: .5;
+  display: table;
+}
+
+#jquery-clipster-overlay span {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 3em;
+  font: Helvetica
+}
+
+#jquery-clipster-overlay input {
+  opacity: 0;
+  position: absolute;
+}

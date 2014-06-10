@@ -7,6 +7,14 @@
  */
 
 (function($) {
+  var $overlay =
+    $('<div id="jquery-clipster-overlay"><span>cmd-c</span><input></div>'),
+    $input = $overlay.find('input');
+  $overlay.hide();
+
+  $(function () {
+    $('body').append($overlay);
+  });
 
   // Collection method.
   $.fn.clipster = function(options) {
@@ -28,25 +36,44 @@
     }
 
     this.text = options.text || $elem.data('text') || $elem.text();
+    this.$elem = $elem;
+    this.is_on = false;
 
-    $elem.on('click', function (e) {
-      var $input = $('<input type="text" value="' + _this.text + '">'),
-        bubbling = true;
-      $elem.after($input);
-      $input.focus();
-
-      $(document).on('copy click', function () {
-        if (bubbling) {
-          bubbling = false;
-        } else {
-          if ($input && $input.length) {
-            $input.remove();
-          }
-        }
-      });
-
+    this.$elem.on('click', function (e) {
+      _this.on();
       e.preventDefault();
     });
+
+    $(document).on('copy click', function (e) {
+      if ($(e.target).closest(_this.$elem).length){
+        return;
+      }
+      _this.off();
+    });
+
   }
+
+  Clipster.prototype.on = function () {
+    if (this.is_on) {
+      return;
+    }
+
+    $overlay.show();
+
+    $input.val(this.text);
+    $input[0].select();
+    $input.focus();
+
+    this.is_on = true;
+  };
+
+  Clipster.prototype.off = function () {
+    if (this.is_on) {
+      setTimeout(function () {
+        $overlay.hide();
+      });
+      this.is_on = false;
+    }
+  };
 
 }(jQuery));

@@ -1,0 +1,22 @@
+{
+  "name": "jquery-clipster",
+  "version": "0.1.0",
+  "homepage": "https://github.com/kickstarter/jquery-clipster",
+  "authors": [
+    "Samuel Cole <sam@samuelcole.name>"
+  ],
+  "description": "Copy without Flash",
+  "main": "src/clipster.js",
+  "keywords": [
+    "copy",
+    "clipboard"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

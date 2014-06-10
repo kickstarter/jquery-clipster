@@ -27,6 +27,8 @@
       this.$elems.clipster();
       this.$plain = this.$elems.filter('#plain');
       this.$datatext = this.$elems.filter('#datatext');
+      this.$overlay = $('#jquery-clipster-overlay');
+      this.$input =this.$overlay.find('input');
     }
   });
 
@@ -36,16 +38,16 @@
     strictEqual(this.$elems.clipster(), this.$elems, 'should be chainable');
   });
 
-  test('on click: opens input', function () {
+  test('on click: opens overlay', function () {
     expect(1);
     this.$plain.click();
-    strictEqual(this.$plain.siblings('input').length, 1);
+    ok(this.$overlay.is(':visible'));
   });
 
   test('on click: input is focused', function () {
     expect(1);
     this.$plain.click();
-    strictEqual(this.$plain.siblings('input')[0], document.activeElement);
+    strictEqual(this.$input[0], document.activeElement);
   });
 
   test('on click: default is prevented', function () {
@@ -56,36 +58,44 @@
     strictEqual(e.isDefaultPrevented(), true);
   });
 
-  test('on copy: input is removed', function () {
+  asyncTest('on copy: overlay is hidden', function () {
+    var _this = this;
     expect(1);
     this.$plain.click();
     $(document).trigger('copy');
-    strictEqual(this.$plain.siblings('input').length, 0);
+    setTimeout(function () {
+      ok(!_this.$overlay.is(':visible'));
+      start();
+    });
   });
 
-  test('on document click: input is removed', function () {
+  asyncTest('on document click: overlay is hidden', function () {
+    var _this = this;
     expect(1);
     this.$plain.click();
     $(document).click();
-    strictEqual(this.$plain.siblings('input').length, 0);
+    setTimeout(function () {
+      ok(!_this.$overlay.is(':visible'));
+      start();
+    });
   });
 
   test('copy can be defined by: $elem\'s text()', function () {
     expect(1);
     this.$plain.click();
-    strictEqual(this.$plain.siblings('input').val(), 'copy');
+    strictEqual(this.$input.val(), 'copy');
   });
 
   test('copy can be defined by: data-text', function () {
     expect(1);
     this.$datatext.click();
-    strictEqual(this.$datatext.siblings('input').val(), 'foo');
+    strictEqual(this.$input.val(), 'foo');
   });
 
   test('copy can be defined by: options', function () {
     expect(1);
     this.$datatext.click();
-    strictEqual(this.$datatext.siblings('input').val(), 'foo');
+    strictEqual(this.$input.val(), 'foo');
   });
 
 }(jQuery));

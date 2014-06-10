@@ -11,20 +11,13 @@ Download the [production version][min] or the [development version][max].
 In your web page:
 
 ```html
+<a class="clipster" data-text="1234">copy user id</a>
+
 <script src="jquery.js"></script>
 <script src="dist/clipster.min.js"></script>
 <script>
 jQuery(function($) {
-  $.awesome(); // "awesome"
+  $('a.clipster').clipster();
 });
 </script>
 ```
-
-## Documentation
-_(Coming soon)_
-
-## Examples
-_(Coming soon)_
-
-## Release History
-_(Nothing yet)_
