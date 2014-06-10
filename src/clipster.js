@@ -9,30 +9,44 @@
 (function($) {
 
   // Collection method.
-  $.fn.clipster = function() {
-    return this.each(function(i) {
-      // Do something awesome to each selected element.
-      $(this).html('awesome' + i);
+  $.fn.clipster = function(options) {
+    return this.each(function() {
+      var $this = $(this),
+        clipster = $this.data('clipster');
+      if (!clipster) {
+        clipster = new Clipster($this, options);
+        $this.data('clipster', clipster);
+      }
     });
   };
 
-  // Static method.
-  $.clipster = function(options) {
-    // Override default options with passed-in options.
-    options = $.extend({}, $.clipster.options, options);
-    // Return something awesome.
-    return 'awesome' + options.punctuation;
-  };
+  function Clipster ($elem, options) {
+    var _this = this;
 
-  // Static method default options.
-  $.clipster.options = {
-    punctuation: '.'
-  };
+    if (!options) {
+      options = {};
+    }
 
-  // Custom selector.
-  $.expr[':'].clipster = function(elem) {
-    // Is this element awesome?
-    return $(elem).text().indexOf('awesome') !== -1;
-  };
+    this.text = options.text || $elem.data('text') || $elem.text();
+
+    $elem.on('click', function (e) {
+      var $input = $('<input type="text" value="' + _this.text + '">'),
+        bubbling = true;
+      $elem.after($input);
+      $input.focus();
+
+      $(document).on('copy click', function () {
+        if (bubbling) {
+          bubbling = false;
+        } else {
+          if ($input && $input.length) {
+            $input.remove();
+          }
+        }
+      });
+
+      e.preventDefault();
+    });
+  }
 
 }(jQuery));

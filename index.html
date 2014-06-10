@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Clipster</title>
+  <!-- Load local jQuery. This can be overridden with a ?jquery=___ param. -->
+  <script src="libs/jquery/jquery.js"></script>
+  <!-- Load local lib any tests. -->
+  <script src="src/clipster.js"></script>
+</head>
+<body>
+  <div>
+    <a class="clipster" href="#">copy</a>
+  </div>
+  <div>
+    <a class="clipster" data-text="foo" href="#">data-text is 'foo'</a>
+  </div>
+  <script>
+    $(function () {
+      $('a.clipster').clipster();
+    });
+  </script>
+</body>
+</html>

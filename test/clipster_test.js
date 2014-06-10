@@ -23,40 +23,69 @@
   module('jQuery#clipster', {
     // This will run before each test in this module.
     setup: function() {
-      this.elems = $('#qunit-fixture').children();
+      this.$elems = $('#qunit-fixture .clipster');
+      this.$elems.clipster();
+      this.$plain = this.$elems.filter('#plain');
+      this.$datatext = this.$elems.filter('#datatext');
     }
   });
 
   test('is chainable', function() {
     expect(1);
     // Not a bad test to run on collection methods.
-    strictEqual(this.elems.clipster(), this.elems, 'should be chainable');
+    strictEqual(this.$elems.clipster(), this.$elems, 'should be chainable');
   });
 
-  test('is awesome', function() {
+  test('on click: opens input', function () {
     expect(1);
-    strictEqual(this.elems.clipster().text(), 'awesome0awesome1awesome2', 'should be awesome');
+    this.$plain.click();
+    strictEqual(this.$plain.siblings('input').length, 1);
   });
 
-  module('jQuery.clipster');
-
-  test('is awesome', function() {
-    expect(2);
-    strictEqual($.clipster(), 'awesome.', 'should be awesome');
-    strictEqual($.clipster({punctuation: '!'}), 'awesome!', 'should be thoroughly awesome');
-  });
-
-  module(':clipster selector', {
-    // This will run before each test in this module.
-    setup: function() {
-      this.elems = $('#qunit-fixture').children();
-    }
-  });
-
-  test('is awesome', function() {
+  test('on click: input is focused', function () {
     expect(1);
-    // Use deepEqual & .get() when comparing jQuery objects.
-    deepEqual(this.elems.filter(':clipster').get(), this.elems.last().get(), 'knows awesome when it sees it');
+    this.$plain.click();
+    strictEqual(this.$plain.siblings('input')[0], document.activeElement);
+  });
+
+  test('on click: default is prevented', function () {
+    /*global _$*/
+    expect(1);
+    var e = _$.Event('click');
+    this.$plain.trigger(e);
+    strictEqual(e.isDefaultPrevented(), true);
+  });
+
+  test('on copy: input is removed', function () {
+    expect(1);
+    this.$plain.click();
+    $(document).trigger('copy');
+    strictEqual(this.$plain.siblings('input').length, 0);
+  });
+
+  test('on document click: input is removed', function () {
+    expect(1);
+    this.$plain.click();
+    $(document).click();
+    strictEqual(this.$plain.siblings('input').length, 0);
+  });
+
+  test('copy can be defined by: $elem\'s text()', function () {
+    expect(1);
+    this.$plain.click();
+    strictEqual(this.$plain.siblings('input').val(), 'copy');
+  });
+
+  test('copy can be defined by: data-text', function () {
+    expect(1);
+    this.$datatext.click();
+    strictEqual(this.$datatext.siblings('input').val(), 'foo');
+  });
+
+  test('copy can be defined by: options', function () {
+    expect(1);
+    this.$datatext.click();
+    strictEqual(this.$datatext.siblings('input').val(), 'foo');
   });
 
 }(jQuery));
