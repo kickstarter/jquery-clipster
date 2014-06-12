@@ -2,6 +2,11 @@
 
 Copy without Flash
 
+There is currently no way to place text onto a user's clipboard without
+a plugin (normally Flash). Instead, this plugin creates an invisible input with the
+text to target selected and then asks the user to press their 'copy' keyboard
+shortcut.
+
 ## Getting Started
 Download the [production version][min] or the [development version][max].
 
