@@ -8,7 +8,12 @@ text to target selected and then asks the user to press their 'copy' keyboard
 shortcut.
 
 ## Getting Started
-Download the [production version][min] or the [development version][max].
+
+```
+bower install jquery-clipster
+```
+
+or download the [production version][min] or the [development version][max].
 
 [min]: https://raw.github.com/kickstarter/jquery-clipster/master/dist/clipster.min.js
 [max]: https://raw.github.com/kickstarter/jquery-clipster/master/dist/clipster.js
