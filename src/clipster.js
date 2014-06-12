@@ -40,7 +40,7 @@
     this.is_on = false;
 
     this.$elem.on('click', function (e) {
-      _this.on();
+      _this.activate();
       e.preventDefault();
     });
 
@@ -48,13 +48,13 @@
       if ($(e.target).closest(_this.$elem).length){
         return;
       }
-      _this.off();
+      _this.deactivate();
     });
 
   }
 
-  Clipster.prototype.on = function () {
-    if (this.is_on) {
+  Clipster.prototype.activate = function () {
+    if (this.active) {
       return;
     }
 
@@ -64,15 +64,15 @@
     $input[0].select();
     $input.focus();
 
-    this.is_on = true;
+    this.active = true;
   };
 
-  Clipster.prototype.off = function () {
-    if (this.is_on) {
+  Clipster.prototype.deactivate = function () {
+    if (this.active) {
       setTimeout(function () {
         $overlay.hide();
       });
-      this.is_on = false;
+      this.active = false;
     }
   };
 

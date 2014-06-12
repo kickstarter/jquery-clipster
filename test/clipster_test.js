@@ -21,14 +21,8 @@
   */
 
   module('jQuery#clipster', {
-    // This will run before each test in this module.
     setup: function() {
       this.$elems = $('#qunit-fixture .clipster');
-      this.$elems.clipster();
-      this.$plain = this.$elems.filter('#plain');
-      this.$datatext = this.$elems.filter('#datatext');
-      this.$overlay = $('#jquery-clipster-overlay');
-      this.$input =this.$overlay.find('input');
     }
   });
 
@@ -36,6 +30,14 @@
     expect(1);
     // Not a bad test to run on collection methods.
     strictEqual(this.$elems.clipster(), this.$elems, 'should be chainable');
+  });
+
+  module('plain', {
+    setup: function () {
+      this.$plain = $('#plain').clipster();
+      this.$overlay = $('#jquery-clipster-overlay');
+      this.$input = this.$overlay.find('input');
+    }
   });
 
   test('on click: opens overlay', function () {
@@ -86,16 +88,33 @@
     strictEqual(this.$input.val(), 'copy');
   });
 
+  module('data-text', {
+    setup: function () {
+      this.$datatext = $('#datatext').clipster();
+      this.$input = $('#jquery-clipster-overlay input');
+    }
+  });
+
   test('copy can be defined by: data-text', function () {
     expect(1);
     this.$datatext.click();
     strictEqual(this.$input.val(), 'foo');
   });
 
+  module('options', {
+    setup: function () {
+      this.$elem = $('#link');
+      this.$input = $('#jquery-clipster-overlay input');
+    }
+  });
+
   test('copy can be defined by: options', function () {
     expect(1);
-    this.$datatext.click();
-    strictEqual(this.$input.val(), 'foo');
+    this.$elem.clipster({
+      text: 'bar'
+    });
+    this.$elem.click();
+    strictEqual(this.$input.val(), 'bar');
   });
 
 }(jQuery));
