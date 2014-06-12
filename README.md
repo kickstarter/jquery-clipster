@@ -7,6 +7,8 @@ a plugin (normally Flash). Instead, this plugin creates an invisible input with 
 text to target selected and then asks the user to press their 'copy' keyboard
 shortcut.
 
+## [Examples](http://kickstarter.github.io/jquery-clipster/)
+
 ## Getting Started
 
 ```
