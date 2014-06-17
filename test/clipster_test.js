@@ -57,7 +57,7 @@
     expect(1);
     var e = _$.Event('click');
     this.$plain.trigger(e);
-    strictEqual(e.isDefaultPrevented(), true);
+    ok(e.isDefaultPrevented());
   });
 
   asyncTest('on copy: overlay is hidden', function () {
@@ -125,9 +125,11 @@
   });
 
   test('can be initiated on click', function () {
-    expect(1);
-    $('#link').click();
+    expect(2);
+    var e = _$.Event('click');
+    $('#link').trigger(e);
     strictEqual(this.$input.val(), 'link');
+    ok(e.isDefaultPrevented());
   });
 
 }(jQuery));

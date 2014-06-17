@@ -17,10 +17,12 @@
   });
 
   $.clipster = function (selector, options) {
-    $(document).on('click', selector, function () {
+    $(document).on('click', selector, function (e) {
       var $this = $(this).clipster(options),
         clipster = $this.data('clipster');
+
       clipster.activate();
+      e.preventDefault();
     });
   };
 
