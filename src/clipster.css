@@ -1,6 +1,6 @@
 #jquery-clipster-overlay {
   position: fixed;
-  z-index: 100;
+  z-index: 1003;
   left: 0px;
   top: 0px;
   width: 100%;
