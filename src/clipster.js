@@ -16,6 +16,14 @@
     $('body').append($overlay);
   });
 
+  $.clipster = function (selector, options) {
+    $(document).on('click', selector, function () {
+      var $this = $(this).clipster(options),
+        clipster = $this.data('clipster');
+      clipster.activate();
+    });
+  };
+
   // Collection method.
   $.fn.clipster = function(options) {
     return this.each(function() {
@@ -29,8 +37,6 @@
   };
 
   function Clipster ($elem, options) {
-    var _this = this;
-
     if (!options) {
       options = {};
     }
@@ -38,6 +44,12 @@
     this.text = options.text || $elem.data('text') || $elem.text();
     this.$elem = $elem;
     this.is_on = false;
+
+    this.bind();
+  }
+
+  Clipster.prototype.bind = function () {
+    var _this = this;
 
     this.$elem.on('click', function (e) {
       _this.activate();
@@ -50,8 +62,7 @@
       }
       _this.deactivate();
     });
-
-  }
+  };
 
   Clipster.prototype.activate = function () {
     if (this.active) {

@@ -1,4 +1,4 @@
-/*! Clipster - v0.1.0 - 2014-06-12
+/*! Clipster - v0.1.0 - 2014-06-17
 * https://github.com/kickstarter/jquery-clipster
 * Copyright (c) 2014 Samuel Cole; Licensed MIT */
 (function($) {
@@ -10,6 +10,14 @@
   $(function () {
     $('body').append($overlay);
   });
+
+  $.clipster = function (selector, options) {
+    $(document).on('click', selector, function () {
+      var $this = $(this).clipster(options),
+        clipster = $this.data('clipster');
+      clipster.activate();
+    });
+  };
 
   // Collection method.
   $.fn.clipster = function(options) {
@@ -24,8 +32,6 @@
   };
 
   function Clipster ($elem, options) {
-    var _this = this;
-
     if (!options) {
       options = {};
     }
@@ -33,6 +39,12 @@
     this.text = options.text || $elem.data('text') || $elem.text();
     this.$elem = $elem;
     this.is_on = false;
+
+    this.bind();
+  }
+
+  Clipster.prototype.bind = function () {
+    var _this = this;
 
     this.$elem.on('click', function (e) {
       _this.activate();
@@ -45,8 +57,7 @@
       }
       _this.deactivate();
     });
-
-  }
+  };
 
   Clipster.prototype.activate = function () {
     if (this.active) {

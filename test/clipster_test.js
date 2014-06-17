@@ -117,4 +117,17 @@
     strictEqual(this.$input.val(), 'bar');
   });
 
+  module('delegation', {
+    setup: function () {
+      $.clipster('#link');
+      this.$input = $('#jquery-clipster-overlay input');
+    }
+  });
+
+  test('can be initiated on click', function () {
+    expect(1);
+    $('#link').click();
+    strictEqual(this.$input.val(), 'link');
+  });
+
 }(jQuery));
