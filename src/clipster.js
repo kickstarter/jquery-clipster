@@ -8,7 +8,7 @@
 
 (function($) {
   var $overlay =
-    $('<div id="jquery-clipster-overlay"><span>Press ⌘C to copy:<input></span></div>'),
+    $('<div id="jquery-clipster-overlay"><div><p>Press ⌘C to copy</p><p><input></p></div></div>'),
     $input = $overlay.find('input');
   $overlay.hide();
 
@@ -59,7 +59,8 @@
     });
 
     $(document).on('copy click', function (e) {
-      if ($(e.target).closest(_this.$elem).length){
+      var $target = $(e.target);
+      if ($target.closest(_this.$elem).length || $target.is($input)){
         return;
       }
       _this.deactivate();
