@@ -1,6 +1,6 @@
 {
   "name": "clipster",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "engines": {
     "node": ">= 0.8.0"
   },
