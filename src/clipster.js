@@ -8,7 +8,7 @@
 
 (function($) {
   var $overlay =
-    $('<div id="jquery-clipster-overlay"><span>cmd-c</span><input></div>'),
+    $('<div id="jquery-clipster-overlay"><span>Press ⌘C to copy:<input></span></div>'),
     $input = $overlay.find('input');
   $overlay.hide();
 
