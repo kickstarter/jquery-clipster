@@ -10,7 +10,11 @@
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-#jquery-clipster-overlay span {
+#jquery-clipster-overlay p {
+  margin: 10px;
+}
+
+#jquery-clipster-overlay div {
   display: table-cell;
   text-align: center;
   vertical-align: middle;
@@ -18,6 +22,8 @@
 }
 
 #jquery-clipster-overlay input {
-  font-size: 1em;
-  margin-left: 20px;
+  font-size: .5em;
+  line-height: 2em;
+  width: 410px;
+  text-align: center;
 }
