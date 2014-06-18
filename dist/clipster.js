@@ -55,7 +55,9 @@
 
     $(document).on('copy click', function (e) {
       var $target = $(e.target);
-      if ($target.closest(_this.$elem).length || $target.is($input)){
+      if ($target.closest(_this.$elem).length ||
+        (e.type === 'click' && $target.is($input))
+      ){
         return;
       }
       _this.deactivate();
