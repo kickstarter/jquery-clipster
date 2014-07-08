@@ -1,10 +1,10 @@
-/*! Clipster - v0.1.0 - 2014-06-17
+/*! Clipster - v0.1.0 - 2014-07-08
 * https://github.com/kickstarter/jquery-clipster
 * Copyright (c) 2014 Samuel Cole; Licensed MIT */
 (function($) {
   var $overlay =
-    $('<div id="jquery-clipster-overlay"><span>cmd-c</span><input></div>'),
-    $input = $overlay.find('input');
+    $('<div id="jquery-clipster-overlay"><div><p>Press ⌘C to copy</p><p><textarea></textarea></p></div></div>'),
+    $input = $overlay.find('textarea');
   $overlay.hide();
 
   $(function () {
@@ -12,10 +12,12 @@
   });
 
   $.clipster = function (selector, options) {
-    $(document).on('click', selector, function () {
+    $(document).on('click', selector, function (e) {
       var $this = $(this).clipster(options),
         clipster = $this.data('clipster');
+
       clipster.activate();
+      e.preventDefault();
     });
   };
 
@@ -52,7 +54,8 @@
     });
 
     $(document).on('copy click', function (e) {
-      if ($(e.target).closest(_this.$elem).length){
+      var $target = $(e.target);
+      if ($target.closest(_this.$elem).length || $target.is($input)){
         return;
       }
       _this.deactivate();
