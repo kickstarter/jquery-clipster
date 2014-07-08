@@ -3,7 +3,7 @@
 * Copyright (c) 2014 Samuel Cole; Licensed MIT */
 (function($) {
   var $overlay =
-    $('<div id="jquery-clipster-overlay"><div><p>Press ⌘C to copy</p><p><textarea></textarea></p></div></div>'),
+    $('<div id="jquery-clipster-overlay"><div><p>Press ⌘C to copy</p><p><textarea rows="1"></textarea></p></div></div>'),
     $input = $overlay.find('textarea');
   $overlay.hide();
 
