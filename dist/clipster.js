@@ -1,10 +1,10 @@
-/*! Clipster - v0.1.0 - 2014-06-18
+/*! Clipster - v0.1.0 - 2014-07-08
 * https://github.com/kickstarter/jquery-clipster
 * Copyright (c) 2014 Samuel Cole; Licensed MIT */
 (function($) {
   var $overlay =
-    $('<div id="jquery-clipster-overlay"><div><p>Press ⌘C to copy</p><p><input></p></div></div>'),
-    $input = $overlay.find('input');
+    $('<div id="jquery-clipster-overlay"><div><p>Press ⌘C to copy</p><p><textarea></textarea></p></div></div>'),
+    $input = $overlay.find('textarea');
   $overlay.hide();
 
   $(function () {

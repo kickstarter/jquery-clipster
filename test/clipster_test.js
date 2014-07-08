@@ -36,7 +36,7 @@
     setup: function () {
       this.$plain = $('#plain').clipster();
       this.$overlay = $('#jquery-clipster-overlay');
-      this.$input = this.$overlay.find('input');
+      this.$input = this.$overlay.find('textarea');
     }
   });
 
@@ -91,7 +91,7 @@
   module('data-text', {
     setup: function () {
       this.$datatext = $('#datatext').clipster();
-      this.$input = $('#jquery-clipster-overlay input');
+      this.$input = $('#jquery-clipster-overlay textarea');
     }
   });
 
@@ -101,10 +101,23 @@
     strictEqual(this.$input.val(), 'foo');
   });
 
+  module('newlines', {
+    setup: function () {
+      this.$newlines = $('#newlines').clipster();
+      this.$input = $('#jquery-clipster-overlay textarea');
+    }
+  });
+
+  test('copy can contain newlines', function () {
+    expect(1);
+    this.$newlines.click();
+    strictEqual(this.$input.val(), 'a\nb');
+  });
+
   module('options', {
     setup: function () {
       this.$elem = $('#link');
-      this.$input = $('#jquery-clipster-overlay input');
+      this.$input = $('#jquery-clipster-overlay textarea');
     }
   });
 
@@ -120,7 +133,7 @@
   module('delegation', {
     setup: function () {
       $.clipster('#link');
-      this.$input = $('#jquery-clipster-overlay input');
+      this.$input = $('#jquery-clipster-overlay textarea');
     }
   });
 
