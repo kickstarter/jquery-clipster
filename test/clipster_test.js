@@ -82,6 +82,18 @@
     });
   });
 
+  asyncTest('on escape key: overlay is hidden', function () {
+    var _this = this;
+    expect(1);
+    this.$plain.click();
+    $(document).trigger(_$.Event('keydown', {which: 27}));
+    setTimeout(function () {
+      ok(!_this.$overlay.is(':visible'));
+      start();
+    });
+  });
+
+
   test('copy can be defined by: $elem\'s text()', function () {
     expect(1);
     this.$plain.click();

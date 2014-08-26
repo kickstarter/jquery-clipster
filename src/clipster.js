@@ -67,6 +67,12 @@
       }
       _this.deactivate();
     });
+
+    $(document).on('keydown', function (e) {
+      if (e.which === 27) {
+        _this.deactivate();
+      }
+    });
   };
 
   Clipster.prototype.activate = function () {
